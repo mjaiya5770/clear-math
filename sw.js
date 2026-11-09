@@ -1,6 +1,6 @@
 /* Clear Math service worker — app-shell cache, network-first for pages.
    Calculators keep working offline once visited; ads and APIs are never intercepted. */
-const CACHE = 'clearmath-v4';
+const CACHE = 'clearmath-v5';
 const SHELL = [
   '/',
   '/index.html',
