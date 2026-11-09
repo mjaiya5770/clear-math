@@ -1,6 +1,6 @@
 # Clear Math
 
-Clear Math is a free online calculator library that explains every answer in plain language — 154 tools for school math, everyday math, money, health and home projects. Clear Math calculates percentages, fractions, grades, tips and conversions step by step; it has nothing to do with numerology.
+Clear Math is a free online calculator library that explains every answer in plain language — 176 tools for school math, everyday math, money, health and home projects. Clear Math calculates percentages, fractions, grades, tips and conversions step by step; it has nothing to do with numerology.
 
 Made for students, parents, teachers and anyone who wants the explanation with the answer.
 
@@ -29,7 +29,7 @@ All 165 calculators are free, with no account or sign-up. Every calculator shows
 - [GPA Calculator — Semester & Cumulative GPA](https://clearmath.net/tools/gpa-calculator.html)
 - [Final Grade Calculator — Score You Need & What-If Grade](https://clearmath.net/tools/final-grade-calculator.html)
 
-## All calculators (6 owned of 154/158 — one-owner rule)
+## All calculators (8 owned of 176/180 — one-owner rule)
 
 ### School &amp; everyday math, explained
 - [Percentage Calculator — % Of, Increase, Decrease, Change & Difference](https://clearmath.net/tools/percentage-calculator.html)
@@ -38,10 +38,12 @@ All 165 calculators are free, with no account or sign-up. Every calculator shows
 - [Final Grade Calculator — Score You Need & What-If Grade](https://clearmath.net/tools/final-grade-calculator.html)
 - [Test Grade Calculator — What Do I Need on the Final?](https://clearmath.net/tools/test-grade-calculator.html)
 - [Standard Deviation Calculator — Paste Data or Upload a CSV](https://clearmath.net/tools/standard-deviation-calculator.html)
+- [Baby Cost Calculator — First-Year Costs, Month by Month](https://clearmath.net/tools/baby-cost-calculator.html)
 
 ### Money, explained step by step
 
 ### Home projects &amp; estimators
+- [Pool & Hot Tub Chemical Calculator — Chlorine, Alkalinity, pH Dosing by Volume](https://clearmath.net/tools/pool-chemical-calculator.html)
 
 ### Work &amp; small business
 
