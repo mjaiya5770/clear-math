@@ -1,7 +1,7 @@
 {
-  "name": "Clear Math \u2014 Free Online Calculators",
+  "name": "Clear Math — Free Online Calculators",
   "short_name": "Clear Math",
-  "description": "Clear Math explains every calculator like a friend would: 154 free tools for school and everyday math \u2014 percentages, fractions, grades, conversions and more \u2014 each with the working shown in plain language. No signup.",
+  "description": "Clear Math explains every calculator like a friend would: 154 free tools for school and everyday math — percentages, fractions, grades, conversions and more — each with the working shown in plain language. No signup.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -17,6 +17,12 @@
       "src": "/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
