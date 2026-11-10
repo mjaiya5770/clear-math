@@ -2,7 +2,7 @@
   "name": "Clear Math — Free Online Calculators",
   "short_name": "Clear Math",
   "description": "Clear Math explains every calculator like a friend would: 176 free tools for school and everyday math — percentages, fractions, grades, conversions and more — each with the working shown in plain language. No signup.",
-  "start_url": "/",
+  "start_url": "/calculators.html",
   "scope": "/",
   "display": "standalone",
   "background_color": "#164e63",
