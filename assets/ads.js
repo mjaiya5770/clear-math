@@ -28,7 +28,11 @@
   window.__nnShell = NN_SHELL;
   if (NN_SHELL) return; /* NN-SHELL-GATE: all web ad layers stay OFF in the shell */
   if (/[?&]embed=1(&|$)/.test(window.location.search)) return; /* NN-EMBED: ads off inside embeds */
-  var NN_ADSTERRA_PAUSED = true; /* NN-ADULT-CONTAINMENT (Nov 10, 2026) — see loadBanner */
+  /* NN-RESTORE (Nov 12, 2026): the NN-ADULT-CONTAINMENT pause (Nov 10) is
+     LIFTED on muni's order — he accepted Adsterra's filtering answer
+     (support: "All adult content was removed"). Normal Adsterra serving is
+     restored; daily rendered-creative policing continues, and any new adult
+     sighting re-pauses this site the same day. */
   /* NN-MODAL-V2: every seat load — page queue and modal alike — goes through
      ONE serialized lock, so two invokes can never race on the atOptions
      global. The modal seat loads with priority (front of the pending queue)
@@ -96,14 +100,6 @@
   }
 
   function loadBanner(el, done) {
-    /* NN-ADULT-CONTAINMENT (Nov 10, 2026): Adsterra served an explicit
-       adult creative on this site's homepage top banner unit in today's
-       rendered sweep despite the dashboard's confirmed adult-OFF (a
-       hentai-game banner, captured and classified). Every Adsterra seat
-       on this site is pinned to the house floor until the network
-       answers; re-enabling is muni's call. The queue, watchdog and
-       floor behave exactly as designed — only the invoke is refused. */
-    if (NN_ADSTERRA_PAUSED) { watchSeat(el, Date.now()); done(); return; }
     var key = el.getAttribute('data-key');
     var w = parseInt(el.getAttribute('data-w'), 10), h = parseInt(el.getAttribute('data-h'), 10);
     /* NN-HOUSE-PRELOAD: zero-key (dormant) seats can never fill — the house
