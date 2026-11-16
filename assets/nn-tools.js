@@ -2,7 +2,7 @@
    Features: shareable result links (inputs in the URL), copy result, saved calculations
    (localStorage, no account), print / save-as-PDF, count-up results, verdict pulse, confetti on save.
    No external requests. Brand-neutral: colors come from each site's CSS variables.
-   NN-SHELL-P1 pilot build (clear-math + number-nest only in P1): adds the NN-SHELL-P1
+   NN-SHELL-P1 build (R1 rollout build, + NN-EFFECTS-P1): adds the NN-SHELL-P1
    section (stale-state contract, result anatomy, sticky result strip). The PURE block,
    the print markers and the NN-MODAL logic are unchanged from the fleet canonical. */
 (function () {
@@ -671,7 +671,7 @@
     }
   });
 
-  /* ---------- NN-SHELL-P1: supremacy pilot shell (clear-math + number-nest) ----------
+  /* ---------- NN-SHELL-P1: supremacy pilot shell (the P1 pilot trees) ----------
      Stale-state contract (POLISH-SPEC §3/§4): once a result is on screen, an
      input change that has not re-rendered marks the result stale — a standing
      line above the result says so (never color alone), the calculate button
@@ -882,6 +882,124 @@
     });
   }
 
+  /* ---------- NN-EFFECTS-P1: shell effects layer (R1 rollout build) ----------
+     Presentation only — no math, no state: the final rendered text of every
+     value is always the tool's own computed string (tweens end by writing the
+     exact final text, print snaps any in-flight tween to it). Layers on top
+     of the fleet's existing count-up (.results .big via watchBig) and the
+     first-show verdict pulse:
+       - result reveal: the panel fades/rises when a fresh result lands
+         (hidden->shown transition, or a render that follows a button-style
+         calculation rather than live typing);
+       - headline tween for stat-grid tools (no .big): the first .stat .v
+         counts up with the fleet's own animateBig/nnParseBig machinery;
+       - milestone sparkle: a restrained CSS spark burst, at most once per
+         page view, only after a genuine user calculation (nnUserArmed),
+         only when the rendered result itself carries the milestone copy
+         the tools already print ("debt-free" / "mortgage-free");
+       - the sticky strip slides in (CSS), buttons get tactile press depth
+         (CSS). GPU-cheap transform/opacity only, zero layout shift, all of
+         it inert under prefers-reduced-motion, in embed mode and in print. */
+  var nnFx = { celebrated: false, wasShown: false, lastReveal: 0, lastInput: 0, animating: false, celebTimer: null };
+
+  function nnFxSparkle(region) {
+    try {
+      var host = document.createElement('div');
+      host.className = 'nn-fx-burst';
+      host.setAttribute('aria-hidden', 'true');
+      for (var i = 0; i < 12; i++) {
+        var s = document.createElement('span');
+        s.className = 'nn-fx-spark';
+        var ang = (Math.PI * 2 * i) / 12 + (Math.random() * 0.35 - 0.175);
+        var dist = 46 + Math.random() * 42;
+        s.style.setProperty('--nn-fx-x', (Math.cos(ang) * dist).toFixed(1) + 'px');
+        s.style.setProperty('--nn-fx-y', (Math.sin(ang) * dist - 14).toFixed(1) + 'px');
+        s.style.setProperty('--nn-fx-r', Math.round(Math.random() * 160 - 80) + 'deg');
+        host.appendChild(s);
+      }
+      region.appendChild(host);
+      setTimeout(function () { if (host.parentNode) host.remove(); }, 1050);
+    } catch (e) {}
+  }
+  function nnFxMaybeCelebrate(region) {
+    if (nnFx.celebrated || reducedMotion) return;
+    if (!nnUserArmed || nnStale.active) return;
+    if (document.documentElement.classList.contains('nn-embed')) return;
+    if (!nnResultShown()) return;
+    var text = region.textContent || '';
+    if (!/debt-free|mortgage-free/i.test(text)) return;
+    nnFx.celebrated = true;
+    nnFxSparkle(region);
+  }
+  function nnFxTweenStat(region) {
+    /* .big already tweens via watchBig; stat-grid tools have no .big, so
+       their primary value (first .stat .v) snaps today — tween it with the
+       same machinery, but never mid-typing (the value would roll from 0 on
+       every keystroke settle) and never away from the exact final text. */
+    if (region.querySelector('.big')) return;
+    var v = region.querySelector('.stat .v');
+    if (!v) return;
+    var finalText = v.textContent;
+    if (v._nnFxLast === finalText) return;
+    v._nnFxLast = finalText;
+    if (reducedMotion) return;
+    if (Date.now() - nnFx.lastInput < 600) return; /* live typing: snap */
+    var spec = nnParseBig(finalText);
+    if (!spec || spec.num === 0) return;
+    nnFx.animating = true;
+    animateBig(v, { num: 0 }, spec, finalText);
+    setTimeout(function () { nnFx.animating = false; }, 700);
+  }
+  function nnFxSnap(region) {
+    /* beforeprint: an in-flight stat tween must never print an intermediate
+       value — cancel it and write the exact final text. */
+    if (!region) return;
+    var v = region.querySelector('.stat .v');
+    if (v && v._nnAnim) {
+      if (v._nnRaf) cancelAnimationFrame(v._nnRaf);
+      v._nnAnim = false; v._nnRaf = null;
+      if (v._nnFxLast != null) v.textContent = v._nnFxLast;
+      nnFx.animating = false;
+    }
+  }
+  function nnFxOnRender(region) {
+    var shown = nnResultShown();
+    if (!shown) { nnFx.wasShown = false; return; }
+    if (nnStale.active) { nnFx.wasShown = true; return; }
+    var now = Date.now();
+    var typing = now - nnFx.lastInput < 600;
+    if (!reducedMotion && (!nnFx.wasShown || !typing) && now - nnFx.lastReveal > 1200) {
+      nnFx.lastReveal = now;
+      region.classList.remove('nn-fx-reveal');
+      void region.offsetWidth;
+      region.classList.add('nn-fx-reveal');
+    }
+    nnFx.wasShown = true;
+    nnFxTweenStat(region);
+    nnFxMaybeCelebrate(region);
+  }
+  function nnFxInit() {
+    if (document.documentElement.classList.contains('nn-embed')) return;
+    var region = nnResultRegion();
+    if (!region) return; /* document tools (invoice) carry their own chrome */
+    region.classList.add('nn-fx-host');
+    document.addEventListener('input', function () {
+      nnFx.lastInput = Date.now();
+      clearTimeout(nnFx.celebTimer);
+      nnFx.celebTimer = setTimeout(function () { nnFxMaybeCelebrate(region); }, 900);
+    });
+    document.addEventListener('change', function () { nnFx.lastInput = Date.now(); });
+    var pending = false;
+    var obs = new MutationObserver(function () {
+      if (nnFx.animating || pending) return;
+      pending = true;
+      requestAnimationFrame(function () { pending = false; nnFxOnRender(region); });
+    });
+    obs.observe(region, { childList: true, characterData: true, subtree: true });
+    window.addEventListener('beforeprint', function () { nnFxSnap(region); });
+    if (nnResultShown()) nnFx.wasShown = true;
+  }
+
   /* ---------- native-ad anchors (NN-NATIVE-SLOT) ----------
      Designated anchor elements for the native shell's AdMob native units
      (Nov 10, 2026 addendum). GRID: on /calculators.html, one anchor after
@@ -955,6 +1073,7 @@
     nnModalKey = nnSiteAdKey('300');
     nnNativeSlots(); /* NN-NATIVE-SLOT */
     nnShellInit(); /* NN-SHELL-P1 */
+    nnFxInit(); /* NN-EFFECTS-P1 */
   }
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
   else { init(); }
