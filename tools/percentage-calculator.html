@@ -88,6 +88,7 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
 <!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+<script>if(/[?&]embed=1(&|$)/.test(window.location.search))window.location.replace("../widgets/percentage-calculator.html?embed=1");</script>
 </head>
 <body>
 <header class="site-header">
@@ -103,72 +104,14 @@
   <h1 class="tool-title">Percentage Calculator</h1>
   <p class="lede">Six percentage tools in one: percent of a number, a number as a percent of another, increase, decrease, percent change and percent difference — results update as you type.</p>
   <div class="nn-answer"><strong>The short answer:</strong> a percentage is a part of 100 — <strong>20% of 150 is 30</strong>, and 30 is 20% of 150. This page covers all six everyday percentage jobs in one place: percent of a number, one number as a percent of another, increase, decrease, percent change and percent difference.</div>
+   <div class="card nn-use-cta">
+     <h2>Use the Percentage Calculator</h2>
+     <p>The calculator itself lives on the landing page — open it there and it is ready in the module, sized to fit your screen with no scrolling through a long page to find the form.</p>
+     <p><a class="btn" href="../index.html?use=tools/percentage-calculator.html">Open the Percentage Calculator &rarr;</a></p>
+   </div>
+   
 
-  <div class="card nn-calc-card">
-
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
-      <button type="button" class="btn mode-btn" data-mode="of" onclick="setMode('of')">% of a number</button>
-      <button type="button" class="btn mode-btn" data-mode="aspct" onclick="setMode('aspct')">Number as %</button>
-      <button type="button" class="btn mode-btn" data-mode="inc" onclick="setMode('inc')">% increase</button>
-      <button type="button" class="btn mode-btn" data-mode="dec" onclick="setMode('dec')">% decrease</button>
-      <button type="button" class="btn mode-btn" data-mode="change" onclick="setMode('change')">% change</button>
-      <button type="button" class="btn mode-btn" data-mode="diff" onclick="setMode('diff')">% difference</button>
-    </div>
-    <div class="mode-panel" id="panel-of">
-      <div class="row">
-        <div class="field"><label for="pPct">Percent (%)</label><input id="pPct" type="number" value="20" step="any"></div>
-        <div class="field"><label for="pNum">Of number</label><input id="pNum" type="number" value="150" step="any"></div>
-      </div>
-    </div>
-    <div class="mode-panel" id="panel-aspct" hidden>
-      <div class="row">
-        <div class="field"><label for="aPart">Number (part)</label><input id="aPart" type="number" value="30" step="any"></div>
-        <div class="field"><label for="aWhole">Of number (whole)</label><input id="aWhole" type="number" value="150" step="any"></div>
-      </div>
-    </div>
-    <div class="mode-panel" id="panel-inc" hidden>
-      <div class="row">
-        <div class="field"><label for="iNum">Starting number</label><input id="iNum" type="number" value="150" step="any"></div>
-        <div class="field"><label for="iPct">Increase by (%)</label><input id="iPct" type="number" value="20" step="any"></div>
-      </div>
-    </div>
-    <div class="mode-panel" id="panel-dec" hidden>
-      <div class="row">
-        <div class="field"><label for="dNum">Starting number</label><input id="dNum" type="number" value="150" step="any"></div>
-        <div class="field"><label for="dPct">Decrease by (%)</label><input id="dPct" type="number" value="20" step="any"></div>
-      </div>
-    </div>
-    <div class="mode-panel" id="panel-change" hidden>
-      <div class="row">
-        <div class="field"><label for="cFrom">From</label><input id="cFrom" type="number" value="150" step="any"></div>
-        <div class="field"><label for="cTo">To</label><input id="cTo" type="number" value="180" step="any"></div>
-      </div>
-    </div>
-    <div class="mode-panel" id="panel-diff" hidden>
-      <div class="row">
-        <div class="field"><label for="fA">First number</label><input id="fA" type="number" value="100" step="any"></div>
-        <div class="field"><label for="fB">Second number</label><input id="fB" type="number" value="150" step="any"></div>
-      </div>
-    </div>
-
-    <button class="btn" onclick="calc()">Calculate</button>
-    <div class="nn-actions no-print" data-nn-actions>
-  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
-  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
-  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
-  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
-</div>
-<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
-<p class="nn-embed-link no-print"><a href="../embed.html#percentage-calculator">Embed this calculator on your site — free</a></p>
-<div class="results" id="results">
-      <div style="color:var(--muted);font-size:.9rem">Your answer</div>
-      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
-      <div class="big" id="rMain">—</div>
-      <table><tbody id="rows"></tbody></table>
-    
-<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">How the answer is built</div><div class="nn-sig-body"></div></div>
-</div>
-  </div>
+  
 <div class="nn-ad" data-key="238ab4a00eabf28c99b5f63301fd12ac" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>Clear Math — the answer, explained like a friend would</strong><span>Percentages, fractions, grades &amp; everyday math, step by step. No signup, ever →</span></a></div>
 
   <div class="card">
@@ -218,7 +161,12 @@
   </div>
 </main>
 <div class="nn-ad nn-ad-bottom" data-key="238ab4a00eabf28c99b5f63301fd12ac" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>Clear Math — the answer, explained like a friend would</strong><span>Percentages, fractions, grades &amp; everyday math, step by step. No signup, ever →</span></a></div>
-<section class="related-tools">
+<div class="card nn-use-cta">
+     <h2>Ready to run your numbers?</h2>
+     <p>The calculator itself lives on the landing page — open it there and it is ready in the module, sized to fit your screen with no scrolling through a long page to find the form.</p>
+     <p><a class="btn" href="../index.html?use=tools/percentage-calculator.html">Open the Percentage Calculator &rarr;</a></p>
+   </div>
+   <section class="related-tools">
   <h2>Related tools</h2>
   <ul>
     <li><a href="discount-calculator.html">Discount Calculator</a></li>
@@ -235,98 +183,7 @@
   </ul>
 </section>
 <footer class="site-footer"><div class="wrap"><div>© 2026 Clear Math</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
-<script>
 
-function fmtN(n){return n.toLocaleString('en-US',{maximumFractionDigits:4});}
-function fmtP(n){return n.toLocaleString('en-US',{maximumFractionDigits:2})+'%';}
-function v(id){return +document.getElementById(id).value||0;}
-/*PURE-BEGIN*/
-function pctOf(p,x){return p/100*x;}
-function asPct(part,whole){return whole===0?NaN:part/whole*100;}
-function applyIncrease(x,p){return x*(1+p/100);}
-function applyDecrease(x,p){return x*(1-p/100);}
-function pctChange(from,to){return from===0?NaN:(to-from)/from*100;}
-function pctDiff(a,b){var avg=(a+b)/2;return avg===0?NaN:Math.abs(a-b)/avg*100;}
-/*PURE-END*/
-/*P4SIG*/
-function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
-function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
-function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
-var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
-var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
-var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
-var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
-
-function sigStepsHTML(steps,note){
-  if(!steps.length)return '';
-  var rows=steps.map(function(s,i){
-    return '<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-step-n">'+(i+1)+'</span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';
-  }).join('');
-  return rows+(note?'<div class="sig-note">'+note+'</div>':'');
-}
-/*P4STEPS-END*/
-/*P4PURE*/
-function pctSteps(mode,a,b){
-  if(mode==='of'){var d=a/100;return [[a+'% as a decimal',''+d],[d+' × '+b,''+(d*b)]];}
-  if(mode==='aspct'){var q=b!==0?a/b:0;return [[a+' ÷ '+b,''+q],[q+' × 100',(q*100).toFixed(2)+'%']];}
-  if(mode==='inc'){var amt=a*b/100;return [[b+'% of '+a,''+amt],[a+' + '+amt,''+(a+amt)]];}
-  if(mode==='dec'){var amt2=a*b/100;return [[b+'% of '+a,''+amt2],[a+' − '+amt2,''+(a-amt2)]];}
-  if(mode==='change'){var dd=b-a;var p=a!==0?dd/a*100:0;return [[b+' − '+a,''+dd],[dd+' ÷ '+a+' × 100',p.toFixed(2)+'%']];}
-  if(mode==='diff'){var avg=(a+b)/2;var df=Math.abs(a-b);var p2=avg!==0?df/avg*100:0;return [['Average of '+a+' and '+b,''+avg],['|'+a+' − '+b+'| ÷ average × 100',p2.toFixed(2)+'%']];}
-  return [];
-}
-function gradeSteps(cur,w,tgt){
-  var banked=cur*(1-w/100),remain=tgt-banked,need=w>0?remain/(w/100):0;
-  return [['Current '+cur+'% counts for '+(100-w)+'% of the grade',banked.toFixed(1)+'%'],
-          [tgt+'% target − '+banked.toFixed(1)+'% banked',remain.toFixed(1)+'%'],
-          [remain.toFixed(1)+'% ÷ '+w+'% exam weight',need.toFixed(1)+'%']];
-}
-/*P4PURE-END*/
-var mode='of';
-function setMode(m){
-  mode=m;
-  document.querySelectorAll('.mode-panel').forEach(function(p){p.hidden=true;});
-  document.getElementById('panel-'+m).hidden=false;
-  document.querySelectorAll('.mode-btn').forEach(function(b){
-    var on=b.getAttribute('data-mode')===m;
-    b.style.background=on?'':'var(--teal-light)'; b.style.color=on?'':'var(--teal-dark)'; b.style.boxShadow=on?'':'none';
-  });
-  calc();
-}
-function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
-function calc(){
-  var big='',verd='',rows='';
-  if(mode==='of'){var p=v('pPct'),x=v('pNum'),r=pctOf(p,x);
-    big=fmtN(r); verd=fmtN(p)+'% of '+fmtN(x)+' is '+fmtN(r)+'.';
-    rows=row('Percent',fmtP(p))+row('Number',fmtN(x))+row('Result',fmtN(r))+row('Remainder ('+fmtN(x)+' − result)',fmtN(x-r));
-  } else if(mode==='aspct'){var pt=v('aPart'),w=v('aWhole'),r=asPct(pt,w);
-    big=isNaN(r)?'—':fmtP(r); verd=fmtN(pt)+' is '+(isNaN(r)?'undefined (whole is 0)':fmtP(r)+' of '+fmtN(w))+'.';
-    rows=row('Part',fmtN(pt))+row('Whole',fmtN(w))+row('Percent',isNaN(r)?'—':fmtP(r))+row('The rest of the whole',fmtP(100-(isNaN(r)?0:r)));
-  } else if(mode==='inc'){var x2=v('iNum'),p2=v('iPct'),r2=applyIncrease(x2,p2);
-    big=fmtN(r2); verd=fmtN(x2)+' increased by '+fmtN(p2)+'% is '+fmtN(r2)+'.';
-    rows=row('Starting number',fmtN(x2))+row('Increase amount',fmtN(r2-x2))+row('New value',fmtN(r2));
-  } else if(mode==='dec'){var x3=v('dNum'),p3=v('dPct'),r3=applyDecrease(x3,p3);
-    big=fmtN(r3); verd=fmtN(x3)+' decreased by '+fmtN(p3)+'% is '+fmtN(r3)+'.';
-    rows=row('Starting number',fmtN(x3))+row('Decrease amount',fmtN(x3-r3))+row('New value',fmtN(r3));
-  } else if(mode==='change'){var f=v('cFrom'),t=v('cTo'),r4=pctChange(f,t);
-    big=isNaN(r4)?'—':fmtP(r4); verd='From '+fmtN(f)+' to '+fmtN(t)+' is a '+(isNaN(r4)?'—':fmtP(Math.abs(r4))+' '+(r4>=0?'increase':'decrease'))+'.';
-    rows=row('From',fmtN(f))+row('To',fmtN(t))+row('Change',fmtN(t-f))+row('Percent change',isNaN(r4)?'—':fmtP(r4));
-  } else {var a=v('fA'),b=v('fB'),r5=pctDiff(a,b);
-    big=isNaN(r5)?'—':fmtP(r5); verd='The percent difference between '+fmtN(a)+' and '+fmtN(b)+' is '+(isNaN(r5)?'—':fmtP(r5))+'.';
-    rows=row('First number',fmtN(a))+row('Second number',fmtN(b))+row('Absolute difference',fmtN(Math.abs(a-b)))+row('Average',fmtN((a+b)/2))+row('Percent difference',isNaN(r5)?'—':fmtP(r5));
-  }
-  document.getElementById('rMain').textContent=big;
-  document.getElementById('verdict').textContent=verd;
-  document.getElementById('rows').innerHTML=rows;
-  var __args=mode==='of'?[v('pPct'),v('pNum')]:mode==='aspct'?[v('aPart'),v('aWhole')]:mode==='inc'?[v('iNum'),v('iPct')]:mode==='dec'?[v('dNum'),v('dPct')]:mode==='change'?[v('cFrom'),v('cTo')]:[v('fA'),v('fB')];var __ok=mode==='aspct'?__args[1]!==0:mode==='change'?__args[0]!==0:mode==='diff'?(__args[0]+__args[1])!==0:true;if(__ok)sigSet(null,sigStepsHTML(pctSteps(mode,__args[0],__args[1]),'The same steps the formula takes — change any number and the working updates too.'));
-  document.getElementById('results').classList.add('show');
-}
-
-function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
-
-live(); setMode('of');
-
-</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>
